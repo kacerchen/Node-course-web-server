@@ -4,6 +4,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//to start app by heroku, need to add "start": "node + file name" in package.json. This is like command line will run when heroku starts apps
+//get local environment variable port from Nodejs.Process
+const port = process.env.PORT || 3000;
+
 //Creates an Express application. The express() function is a top-level function exported by the express module.
 let app = express();
 
@@ -67,4 +71,6 @@ app.get('/bad', (req, res) => {
 });
 
 //Binds and listens for connections on the specified host and port. This method is identical to Node’s http.Server.listen().
-app.listen(3000);
+app.listen(port, () => {
+    console.log(`Server is up on ${port}`);
+});;
